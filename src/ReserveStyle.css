@@ -1,0 +1,9 @@
+.login-form {
+    max-width: 320px;
+  }
+
+  h1{
+      font-size: 2em;
+      font-weight: bolder;
+      color: #1890ff;
+  }
