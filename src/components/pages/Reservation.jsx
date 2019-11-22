@@ -5,6 +5,7 @@ import TabTimeline from "../Reservation/TabTimeline";
 import api from "../api/reservation";
 import { Layout } from "antd";
 
+
 const { Header, Footer, Sider, Content } = Layout;
 
 export default class Reservation extends Component {
@@ -65,8 +66,7 @@ export default class Reservation extends Component {
                   <Col xs={17}>
                   <Row type="flex" justify="center">
                       <Col xs={20} style={{ marginTop: "20px" }}>
-                        
-                        logo
+                        Logo
                       </Col>
                     </Row>
                     <Row type="flex" justify="center">

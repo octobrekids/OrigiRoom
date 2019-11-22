@@ -1,5 +1,5 @@
 .login-form {
-    max-width: 320px;
+    max-width: 300px;
   }
 
   h1{
@@ -7,3 +7,9 @@
       font-weight: bolder;
       color: #1890ff;
   }
+
+
+.date-picker{
+    width: 300px
+}
+

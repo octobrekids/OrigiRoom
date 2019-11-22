@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Form, Input, Button, DatePicker } from "antd";
+import { Form, Input, Button, DatePicker, Row, Col } from "antd";
+
 
 class ReservationForm extends Component {
   handleSubmit = e => {
@@ -11,8 +12,8 @@ class ReservationForm extends Component {
 
       const newValues = {
         ...values,
-        'date-picker': values['date-picker'].format('YYYY-MM-DD'),
-        'date2-picker': values['date-picker'].format('YYYY-MM-DD')
+        "date-picker": values["date-picker"].format("YYYY-MM-DD"),
+        "date2-picker": values["date-picker"].format("YYYY-MM-DD")
       };
 
       console.log(values);
@@ -23,31 +24,34 @@ class ReservationForm extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form onSubmit={this.handleSubmit} style={{marginLeft:'10%'}}>
+      <Form onSubmit={this.handleSubmit} style={{ marginLeft: "10%" }}>
         <h1>1) Room Details</h1>
-        <Form layout="inline">
-          <Form.Item label="Check-in Date">
-            {getFieldDecorator("date-picker", {
-              rules: [
-                {
-                  required: true,
-                  message: "Please select check-in date"
-                }
-              ]
-            })(<DatePicker />)}
-          </Form.Item>
-
-          <Form.Item label="Check-out Date">
-            {getFieldDecorator("date2-picker", {
-              rules: [
-                {
-                  required: true,
-                  message: "Please select check-out date"
-                }
-              ]
-            })(<DatePicker />)}
-          </Form.Item>
-        </Form>
+        <Row type="flex" justify="right">
+          <Col span={12}>
+            <Form.Item label="Check-in Date">
+              {getFieldDecorator("date-picker", {
+                rules: [
+                  {
+                    required: true,
+                    message: "Please select check-in date"
+                  }
+                ]
+              })(<DatePicker className="date-picker"/>)}
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="Check-out Date">
+              {getFieldDecorator("date2-picker", {
+                rules: [
+                  {
+                    required: true,
+                    message: "Please select check-out date"
+                  }
+                ]
+              })(<DatePicker className="date-picker"/>)}
+            </Form.Item>
+          </Col>
+        </Row>
 
         <Form.Item label="Name" className="login-form" asFeedback>
           {getFieldDecorator("name", {
