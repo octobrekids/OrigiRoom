@@ -4,6 +4,7 @@ import MultiTabs from "../Reservation/MultiTabs";
 import TabTimeline from "../Reservation/TabTimeline";
 import api from "../api/reservation";
 import { Layout } from "antd";
+import logo from "../logo-origi.svg";
 
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -66,12 +67,11 @@ export default class Reservation extends Component {
                   <Col xs={17}>
                   <Row type="flex" justify="center">
                       <Col xs={20} style={{ marginTop: "20px" }}>
-                        Logo
+                      <img src={logo} className="logo-origi" alt="logo" />
                       </Col>
                     </Row>
                     <Row type="flex" justify="center">
                       <Col xs={20} style={{ marginTop: "20px" }}>
-                        
                         <TabTimeline page={Number(this.state.page)} />
                       </Col>
                     </Row>
@@ -97,15 +97,21 @@ export default class Reservation extends Component {
               </Content>
             </Layout>
           </Layout>
-          <Footer type="flex" justify="right">
+          <Footer>
+            <Row type="flex" justify="space-between">
+              <Col span={20}>
             {Number(this.state.page) > 0 ? (
               <Button onClick={this.onPrev} type={"default"}>
                 Back
               </Button>
             ) : null}
+            </Col>
+            <Col span={1}>
             <Button onClick={this.onNext} type={"primary"}>
               Next
             </Button>
+            </Col>
+            </Row>
           </Footer>
         </Layout>
 

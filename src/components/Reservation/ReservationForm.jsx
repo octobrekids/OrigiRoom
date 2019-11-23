@@ -12,8 +12,8 @@ class ReservationForm extends Component {
 
       const newValues = {
         ...values,
-        "date-picker": values["date-picker"].format("YYYY-MM-DD"),
-        "date2-picker": values["date-picker"].format("YYYY-MM-DD")
+        "checkin-picker": values["date-picker"].format("YYYY-MM-DD"),
+        "checkout-picker": values["date-picker"].format("YYYY-MM-DD")
       };
 
       console.log(values);
@@ -25,11 +25,11 @@ class ReservationForm extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <Form onSubmit={this.handleSubmit} style={{ marginLeft: "10%" }}>
-        <h1>1) Heroku test</h1>
+        <h1>1) Room Details</h1>
         <Row type="flex" justify="right">
           <Col span={12}>
             <Form.Item label="Check-in Date">
-              {getFieldDecorator("date-picker", {
+              {getFieldDecorator("checkin-picker", {
                 rules: [
                   {
                     required: true,
@@ -41,7 +41,7 @@ class ReservationForm extends Component {
           </Col>
           <Col span={12}>
             <Form.Item label="Check-out Date">
-              {getFieldDecorator("date2-picker", {
+              {getFieldDecorator("checkout-picker", {
                 rules: [
                   {
                     required: true,

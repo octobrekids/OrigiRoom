@@ -27,6 +27,12 @@ export default function MultiTabs(props) {
       <TabPane key="2">
         Content of Tab Pane 3
       </TabPane>
+      <TabPane key="3">
+        Content of Tab Pane 3
+      </TabPane>
+      <TabPane key="4">
+        Content of Tab Pane 3
+      </TabPane>
 
     </Tabs>
   );
