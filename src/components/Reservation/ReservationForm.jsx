@@ -25,7 +25,7 @@ class ReservationForm extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <Form onSubmit={this.handleSubmit} style={{ marginLeft: "10%" }}>
-        <h1>1) Room Details</h1>
+        <h1>1) Heroku test</h1>
         <Row type="flex" justify="right">
           <Col span={12}>
             <Form.Item label="Check-in Date">
