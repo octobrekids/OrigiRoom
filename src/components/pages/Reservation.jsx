@@ -4,19 +4,28 @@ import MultiTabs from "../Reservation/MultiTabs";
 import TabTimeline from "../Reservation/TabTimeline";
 import api from "../api/reservation";
 import { Layout } from "antd";
-import logo from "../logo-origi.svg";
+import Sidebar from "../Reservation/Sidebar";
 
-
-const { Header, Footer, Sider, Content } = Layout;
+const { Footer, Content } = Layout;
 
 export default class Reservation extends Component {
+  constructor(props) {
+    super(props);
+    this.formData = React.createRef();
+  }
+
   state = {
     welcome: "welcom text jaaaa",
     page: "0",
     forms: {}
   };
 
-  onNext = () => {
+  onNext = async () => {
+    // check validation before go next
+    const valid = await this.getFormData();
+    console.log("form validation next", valid);
+    // if (!stage) return;
+
     this.setState(prevState => {
       let n = Number(this.state.page);
       return {
@@ -36,20 +45,50 @@ export default class Reservation extends Component {
     });
   };
 
-  onForm = data => {
-    console.log("data forms", data);
-    this.setState(
-      prevState => {
-        return {
-          ...prevState,
-          forms: data
-        };
-      },
-      () => {
-        this.onSendAPI();
-      }
-    );
-  };
+  // onForm = data => {
+  //   console.log("data forms", data);
+  //   this.setState(
+  //     prevState => {
+  //       return {
+  //         ...prevState,
+  //         forms: data
+  //       };
+  //     },
+  //     () => {
+  //       this.onSendAPI();
+  //     }
+  //   );
+  // };
+
+  getFormData = async () => {
+    // let stage = 1;
+    this.formData.current
+      .handleSubmit()
+      .then(values => {
+        console.log("get form data", values);
+        this.setState(
+          prevState => {
+            return {
+              ...prevState,
+              forms: {
+                ...values,
+                "checkin-picker": values["checkin-picker"].format("YYYY-MM-DD"),
+                "checkout-picker": values["checkin-picker"].format("YYYY-MM-DD")
+              }
+            };
+          },
+          () => {
+            console.log("form updated", this.state);
+          }
+        );
+        // return values.stage;
+
+      })
+      .catch(err => {
+        console.log("form data not valid", err);
+        return -1;
+      });
+  }
 
   onSendAPI = () => {
     api.send(this.state.forms);
@@ -65,11 +104,6 @@ export default class Reservation extends Component {
               <Content style={{ backgroundColor: "white" }}>
                 <Row>
                   <Col xs={17}>
-                  <Row type="flex" justify="center">
-                      <Col xs={20} style={{ marginTop: "20px" }}>
-                      <img src={logo} className="logo-origi" alt="logo" />
-                      </Col>
-                    </Row>
                     <Row type="flex" justify="center">
                       <Col xs={20} style={{ marginTop: "20px" }}>
                         <TabTimeline page={Number(this.state.page)} />
@@ -77,10 +111,7 @@ export default class Reservation extends Component {
                     </Row>
                     <Row type="flex" justify="center">
                       <Col xs={20}>
-                        <MultiTabs
-                          page={this.state.page}
-                          onSubmit={this.onForm}
-                        />
+                        <MultiTabs page={this.state.page} ref={this.formData} />
                       </Col>
                     </Row>
                   </Col>
@@ -91,7 +122,7 @@ export default class Reservation extends Component {
                       minHeight: "100vh"
                     }}
                   >
-                    eieu
+                    <Sidebar data={this.state.forms} />
                   </Col>
                 </Row>
               </Content>
@@ -100,43 +131,20 @@ export default class Reservation extends Component {
           <Footer>
             <Row type="flex" justify="space-between">
               <Col span={20}>
-            {Number(this.state.page) > 0 ? (
-              <Button onClick={this.onPrev} type={"default"}>
-                Back
-              </Button>
-            ) : null}
-            </Col>
-            <Col span={1}>
-            <Button onClick={this.onNext} type={"primary"}>
-              Next
-            </Button>
-            </Col>
+                {Number(this.state.page) > 0 ? (
+                  <Button onClick={this.onPrev} type={"default"}>
+                    Back
+                  </Button>
+                ) : null}
+              </Col>
+              <Col span={1}>
+                <Button onClick={this.onNext} type={"primary"}>
+                  Next
+                </Button>
+              </Col>
             </Row>
           </Footer>
         </Layout>
-
-        {/* <Row>
-          <Col span={16}>
-            euei
-            <Row>
-              <TabTimeline page={Number(this.state.page)} />
-            </Row>
-            <Row>
-              <MultiTabs page={this.state.page} onSubmit={this.onForm}/>
-            </Row>
-          </Col>
-          <Col span={8} style={{backgroundColor: '#1890ff', minHeight: window.innerHeight}}>eieu</Col>
-        </Row> */}
-        {/* <Row justify={"end"}>
-          <Col>
-            {Number(this.state.page) > 0 ? (
-              <Button onClick={this.onPrev} type={"default"}>Back</Button>
-            ) : null}
-            <Button onClick={this.onNext} type={"primary"}>
-              Next
-            </Button>
-          </Col>
-        </Row> */}
       </React.Fragment>
     );
   }
