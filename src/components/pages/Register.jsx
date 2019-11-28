@@ -4,13 +4,34 @@ import { Form, Input, Select, Card, Row, Col, Button } from "antd";
 const { Option } = Select;
 
 class Register extends Component {
+  state = {
+    confirmDirty: false
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        console.log("Received values of form: ", values);
       }
-    }); 
+    });
+  };
+
+  validateToNextPassword = (rule, value, callback) => {
+    const { form } = this.props;
+    if (value && this.state.confirmDirty) {
+      form.validateFields(["confirm"], { force: true });
+    }
+    callback();
+  };
+
+  compareToFirstPassword = (rule, value, callback) => {
+    const { form } = this.props;
+    if (value && value !== form.getFieldValue("password")) {
+      callback("Two passwords that you enter is inconsistent!");
+    } else {
+      callback();
+    }
   };
 
   render() {
@@ -107,11 +128,14 @@ class Register extends Component {
                     />
                   )}
                 </Form.Item>
-             
-                <Button htmlType="submit">Submit</Button>
-           
+                <Row type="flex" justify="center">
+                  <Col>
+                    <Button htmlType="submit" type="primary">
+                      Submit
+                    </Button>
+                  </Col>
+                </Row>
               </Form>
-              
             </Card>
           </Col>
         </Row>

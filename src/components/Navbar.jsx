@@ -15,8 +15,9 @@ export default function Navbar() {
             defaultSelectedKeys={["0"]}
             style={{ lineHeight: "64px", background: "#fff" }}
           >
-            <Menu.Item key="1">Home</Menu.Item>
-            <Menu.Item key="2">Search Room</Menu.Item>
+            <Menu.Item key="1"><a href="/">Home</a></Menu.Item>
+            <Menu.Item key="2"><a href="/search-room">Search Room</a>
+            </Menu.Item>
           </Menu>
         </Header>
       </Layout>
