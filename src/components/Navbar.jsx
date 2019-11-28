@@ -9,7 +9,7 @@ export default function Navbar() {
     <div>
       <Layout>
         <Header className="header">
-        <div className="logo"><img src={logo}/></div>
+        <div className="logo"><img src={logo} alt="logo"/></div>
           <Menu
             mode="horizontal"
             defaultSelectedKeys={["0"]}

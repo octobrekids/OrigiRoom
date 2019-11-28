@@ -17,7 +17,7 @@ class ReservationForm extends Component {
     return (
       <Form style={{ marginLeft: "10%" }}>
         <h1>1) Room Details</h1>
-        <Row type="flex" justify="right">
+        <Row type="flex" justify="end">
           <Col span={12}>
             <Form.Item label="Check-in Date">
               {getFieldDecorator("checkin-picker", {
@@ -44,7 +44,7 @@ class ReservationForm extends Component {
           </Col>
         </Row>
 
-        <Form.Item label="Guest Number" className="login-form" asFeedback>
+        <Form.Item label="Guest Number" className="login-form" hasFeedback>
           {getFieldDecorator("guest-number", {
             rules: [
               {

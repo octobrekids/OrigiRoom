@@ -14,6 +14,7 @@ export default class Reservation extends Component {
     this.formData = React.createRef();
   }
 
+  
   state = {
     welcome: "welcom text jaaaa",
     page: "0",
@@ -21,16 +22,22 @@ export default class Reservation extends Component {
   };
 
   onNext = async () => {
+    
     // check validation before go next
-    const valid = await this.getFormData();
-    console.log("form validation next", valid);
+    const stage = await this.getFormData();
+    console.log("form validation next", stage);
+    
     // if (!stage) return;
-
+    if(stage < 0) return
+    
     this.setState(prevState => {
       let n = Number(this.state.page);
+      
       return {
         ...prevState,
         page: String(++n)
+        
+        
       };
     });
   };
@@ -60,8 +67,7 @@ export default class Reservation extends Component {
   //   );
   // };
 
-  getFormData = async () => {
-    // let stage = 1;
+  getFormData = () => new Promise((resolve, reject) => {
     this.formData.current
       .handleSubmit()
       .then(values => {
@@ -79,6 +85,7 @@ export default class Reservation extends Component {
           },
           () => {
             console.log("form updated", this.state);
+            resolve(values.stage)
           }
         );
         // return values.stage;
@@ -86,15 +93,21 @@ export default class Reservation extends Component {
       })
       .catch(err => {
         console.log("form data not valid", err);
-        return -1;
+        // return -1;
+        resolve(-1)
       });
-  }
+  })
 
   onSendAPI = () => {
     api.send(this.state.forms);
   };
 
+
+
+
+
   render() {
+    
     console.log("cur states reservation", this.state);
     return (
       <React.Fragment>
@@ -138,9 +151,9 @@ export default class Reservation extends Component {
                 ) : null}
               </Col>
               <Col span={1}>
-                <Button onClick={this.onNext} type={"primary"}>
-                  Next
-                </Button>
+              <Button onClick={this.onNext} type={"primary"}>
+              Next
+            </Button>
               </Col>
             </Row>
           </Footer>
