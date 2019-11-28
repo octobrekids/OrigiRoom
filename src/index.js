@@ -4,14 +4,13 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "antd/dist/antd.css";
-import { BrowserRouter} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import "./ReserveStyle.css";
 import Navbar from "./components/Navbar";
 
-
 ReactDOM.render(
   <BrowserRouter>
-  <Navbar />
+    <Navbar />
     <App />
   </BrowserRouter>,
   document.getElementById("root")
