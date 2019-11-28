@@ -1,13 +1,55 @@
-import React from 'react'
+import React from "react";
+import { Row, Col } from "antd";
 
 export default function Sidebar(props) {
-  
-    console.log(props.data)
-    return (
-        <div>
-  
-     
-            
-        </div>
-    )
+  console.log(props.data);
+  const form = props.data
+  return (
+    <div>
+      <Row type="flex" justify="center">
+        <Col span={20} style={{ marginTop: "10%" }}>
+          <h1 className="sidebar">BOOKING RECAP</h1>
+          {props.stage >= 0 ? (
+            <React.Fragment>
+              <Row justify="space-between" type="flex" className="sidebar">
+                <Col>
+                  <span><b>Check-in date</b></span>
+                </Col>
+                <Col>
+                  <span>{form['checkin-picker']}</span>
+                </Col>
+              </Row>
+              <Row justify="space-between" type="flex" className="sidebar">
+                <Col>
+                  <span><b>Check-out date</b></span>
+                </Col>
+                <Col>
+                  <span>{form['checkout-picker']}</span>
+                </Col>
+              </Row>
+              <Row justify="space-between" type="flex" className="sidebar">
+              <Col>
+                <span><b>Guest Number</b></span>
+              </Col>
+              <Col>
+                <span>{form['guest-number']}</span>
+              </Col>
+            </Row>
+
+            <hr/>
+
+            <Row justify="space-between" type="flex" className="sidebar">
+                <Col>
+                  <span><b>Companynameeeeee</b></span>
+                </Col>
+                <Col>
+                  <span>{form['companyName']}</span>
+                </Col>
+              </Row>
+            </React.Fragment>
+          ) : null}
+        </Col>
+      </Row>
+    </div>
+  );
 }

@@ -2,6 +2,10 @@
     max-width: 300px;
   }
 
+  .long-form{
+      max-width: 685px
+  }
+
   h1{
       font-size: 2em;
       font-weight: bolder;
@@ -22,4 +26,31 @@
 
 .header{
     background: #fff;
+    box-shadow: 0px 6px 14px 0px rgba(0, 0, 0, 0.1);
+    z-index:1;
+    height: 66px;
 }
+
+.sidebar{
+    color: #fff;
+}
+
+.iconExtra{
+   font-size: 30px;
+   padding-right: 20px;
+   margin-top: 5px;
+}
+
+.extra {
+    box-shadow: 0px 8px 12px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.extra .ant-card-body {
+padding: 15px;
+
+
+}
+
+
+

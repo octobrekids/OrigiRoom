@@ -2,17 +2,25 @@ import React, { Component } from "react";
 import { Form, Input, DatePicker, Row, Col } from "antd";
 
 class ReservationForm extends Component {
-  handleSubmit = () => new Promise((resolve, reject) => {
+  handleSubmit = () =>
+    new Promise((resolve, reject) => {
       this.props.form.validateFields((err, values) => {
-        if(err) return reject(err)
+        if (err) return reject(err);
         console.log("Received values of form: ", values);
-        resolve({stage: 1, ...values})
+        resolve({ stage: 1, ...values });
       });
+    });
 
-  })
+  handleStatus = () => {
+    this.props.form.validateFields((err, values) => {
+      if (err) return this.props.onType({ status: false, values });
+      return this.props.onType({ status: true, values });
+    });
+  };
 
   render() {
     console.log("hhhh", this.props);
+
     const { getFieldDecorator } = this.props.form;
     return (
       <Form style={{ marginLeft: "10%" }}>
@@ -27,7 +35,12 @@ class ReservationForm extends Component {
                     message: "Please select check-in date"
                   }
                 ]
-              })(<DatePicker className="date-picker" />)}
+              })(
+                <DatePicker
+                  onChange={this.handleStatus}
+                  className="date-picker"
+                />
+              )}
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -39,7 +52,12 @@ class ReservationForm extends Component {
                     message: "Please select check-out date"
                   }
                 ]
-              })(<DatePicker className="date-picker" />)}
+              })(
+                <DatePicker
+                  onChange={this.handleStatus}
+                  className="date-picker"
+                />
+              )}
             </Form.Item>
           </Col>
         </Row>
@@ -52,7 +70,7 @@ class ReservationForm extends Component {
                 message: "Please Enter Guest Number"
               }
             ]
-          })(<Input />)}
+          })(<Input onKeyUp={this.handleStatus} />)}
         </Form.Item>
       </Form>
     );
@@ -61,4 +79,3 @@ class ReservationForm extends Component {
 const WrappedReservationForm = Form.create()(ReservationForm);
 
 export default WrappedReservationForm;
-
