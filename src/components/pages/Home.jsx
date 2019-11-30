@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Carousel } from "antd";
 import RoomCard from "../Home/RoomCard";
-import RoomData from '../data/Room'
+import RoomData from '../data/Room' 
 
 export default class Home extends Component {
   render() {
@@ -29,32 +29,36 @@ export default class Home extends Component {
         <Row type="flex" justify="center" style={{marginTop: '5%'}}>
           <Col span={20}>
             <Row>
-              <h1>Top Reservation</h1>
+              <h1>Seminar Collection</h1>
             </Row>
-            {
-              RoomData.rooms[0] && RoomData.rooms
-              .filter(e => e.category === '1')
-              .slice(0, 3)
-              .map(e => {
-              return (<RoomCard data={e}/>)
-            })
-          }
+           <Row type='flex' justify='space-between'>
+           {
+            RoomData.rooms[0] && RoomData.rooms
+            .filter(e => e.category === 'Seminar')
+            .slice(0, 3)
+            .map(e => {
+            return (<RoomCard data={e}/>)
+          })
+        }
+        </Row>
           </Col>
         </Row>
 
         <Row type="flex" justify="center" style={{marginTop: '5%'}}>
           <Col span={20}>
             <Row>
-              <h1>Top Reservation</h1>
+              <h1>Party x Seminar Collection</h1>
             </Row>
+            <Row type='flex' justify='space-between'>
             {
               RoomData.rooms[0] && RoomData.rooms
-              .filter(e => e.category === '2')
+              .filter(e => e.category === 'Party')
               .slice(0, 3)
               .map(e => {
               return (<RoomCard data={e}/>)
             })
           }
+          </Row>
           </Col>
         </Row>
 

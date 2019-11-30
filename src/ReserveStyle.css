@@ -54,7 +54,13 @@ padding: 15px;
 }
 
 .roomCard {
-    width: 300px;
+    width: 295px;
+}
+
+.roomCard-img{
+    object-fit: fill;
+    width: 295px;
+    height: 195px;
 }
 
 .roomCard  p{
@@ -73,7 +79,7 @@ padding: 15px;
     text-align: center;
 }
 
-.iconCard {
+.iconCard{
     width: 15px;
     height: 15px;
 }
@@ -130,5 +136,13 @@ padding: 15px;
       box-shadow: 0px 4px 14px 9px rgba(0, 0, 0, 0.1);
   }
 
+
+
+.iconCatering{
+    width: auto;
+    height: 35px;
+    padding-right: 20px;
+    margin-top: 10px;
+ }
 
 
