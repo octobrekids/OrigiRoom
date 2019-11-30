@@ -5,6 +5,7 @@ import Register from "./components/pages/Register";
 import Home from "./components/pages/Home";
 import searchRoom from "./components/pages/SearchRoom";
 import Login from "./components/pages/Login";
+import roomDetail from "./components/pages/RoomDetail";
 
 
 export default function UserRouter() {
@@ -17,6 +18,7 @@ export default function UserRouter() {
       <Route path={"/*/login"} component={Login} />
       <Route path={"/*/reserve"} component={Reservation} />
       <Route path={"/*/reserve"} component={Reservation} />
+      <Route path={"/*/roomdetail"} component={roomDetail} />
       <Route exact path={"*/"} component={Home} />
     </Switch>
   );
