@@ -6,9 +6,12 @@ import Home from "./components/pages/Home";
 import searchRoom from "./components/pages/SearchRoom";
 import Login from "./components/pages/Login";
 
+
 export default function UserRouter() {
   return (
+   
     <Switch>
+    
       <Route path={"/*/search-room"} component={searchRoom} />
       <Route path={"/*/register"} component={Register} />
       <Route path={"/*/login"} component={Login} />

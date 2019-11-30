@@ -4,8 +4,7 @@ export default function SearchRoom() {
     return (
         <div>
 
-        searchroom
-            
+searchRoom
         </div>
     )
 }
