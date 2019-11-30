@@ -50,7 +50,7 @@ class Reservation extends Component {
       "check-in": null,
       "check-out": null,
       "guest-number": "",
-      capacity: null,
+      capacity: "",
       catering: null,
       equipment: [],
       firstName: "",

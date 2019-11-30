@@ -43,7 +43,7 @@ export default function Sidebar(props) {
             <React.Fragment>
               <Row justify="space-between" type="flex" className="sidebar">
                 <Col>
-                  <span><b>Check-in date</b></span>
+                  <span><b>Capacity</b></span>
                 </Col>
                 <Col>
                   <span>{form['checkin-picker']}</span>
@@ -51,7 +51,7 @@ export default function Sidebar(props) {
               </Row>
               <Row justify="space-between" type="flex" className="sidebar">
                 <Col>
-                  <span><b>Check-out date</b></span>
+                  <span><b>Catering</b></span>
                 </Col>
                 <Col>
                   <span>{form['checkout-picker']}</span>
@@ -59,7 +59,7 @@ export default function Sidebar(props) {
               </Row>
               <Row justify="space-between" type="flex" className="sidebar">
               <Col>
-                <span><b>Guest Number</b></span>
+                <span><b>Equipment</b></span>
               </Col>
               <Col>
                 <span>{form['guest-number']}</span>

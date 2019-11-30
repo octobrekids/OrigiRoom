@@ -14,7 +14,7 @@ function onTabClick(d) {
 
 // use forward ref to foward reference
 export default React.forwardRef((props, ref) => {
-  console.log("multab ref", ref);
+  console.log("multab ref", props, ref);
 
   return (
     <Tabs onChange={onTabClick} activeKey={props.page}>
