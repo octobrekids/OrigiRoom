@@ -5,6 +5,9 @@ import TabTimeline from "../Reservation/TabTimeline";
 import api from "../api/reservation";
 import { Layout } from "antd";
 import Sidebar from "../Reservation/Sidebar";
+import queryString from "querystring";
+import { withRouter } from "react-router-dom";
+import RoomData from "../data/Room";
 
 const { Footer, Content } = Layout;
 
@@ -21,10 +24,23 @@ function dataParsing(prevStateForm, data) {
   };
 }
 
-export default class Reservation extends Component {
+class Reservation extends Component {
+  state = { room: undefined };
   constructor(props) {
     super(props);
     this.formData = React.createRef();
+  }
+
+  componentDidMount() {
+    const qs = this.props.history.location.search;
+    const id = queryString.parse(qs)["?id"];
+    const room = RoomData.getRoom(id);
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        room
+      };
+    });
   }
 
   state = {
@@ -34,23 +50,23 @@ export default class Reservation extends Component {
       "check-in": null,
       "check-out": null,
       "guest-number": "",
-      "capacity": null,
-      "catering": null,
-      "equipment": [],
-      "firstName": "",
-      "lastName": "",
-      "companyEmail": "",
-      "Mobile": "",
-      "companyName": "",
-      "contactPerson": "",
-      "fullInvoice": "",
-      "vatNumber": "",
-      "specialNote": "",
-      "Email": "",
-      "cardholderName": "",
-      "cardNumber": "",
-      "expiredDate": "",
-      "CVV": "",
+      capacity: null,
+      catering: null,
+      equipment: [],
+      firstName: "",
+      lastName: "",
+      companyEmail: "",
+      Mobile: "",
+      companyName: "",
+      contactPerson: "",
+      fullInvoice: "",
+      vatNumber: "",
+      specialNote: "",
+      Email: "",
+      cardholderName: "",
+      cardNumber: "",
+      expiredDate: "",
+      CVV: ""
     },
     stage: 0,
     next: false
@@ -156,7 +172,7 @@ export default class Reservation extends Component {
     api.send(this.state.forms);
   };
 
-  onType = ({status, values}) => {
+  onType = ({ status, values }) => {
     console.log("on type naa");
     console.log(status, values);
     if (status) {
@@ -199,6 +215,7 @@ export default class Reservation extends Component {
                           onType={this.onType}
                           page={this.state.page}
                           ref={this.formData}
+                          room={this.state.room}
                         />
                       </Col>
                     </Row>
@@ -240,3 +257,4 @@ export default class Reservation extends Component {
     );
   }
 }
+export default withRouter(Reservation);

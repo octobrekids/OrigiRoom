@@ -29,7 +29,13 @@ export default React.forwardRef((props, ref) => {
         />
       </TabPane>
       <TabPane key="1">
-        <ExtraForm />
+        <ExtraForm 
+        room={props.room}
+        onType={props.onType}
+          wrappedComponentRef={form => {
+            ref.current = form;
+          }}
+          />
       </TabPane>
       <TabPane key="2">
       <ContactDetails />

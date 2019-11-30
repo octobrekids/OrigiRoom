@@ -35,19 +35,40 @@ export default function Sidebar(props) {
                 <span>{form['guest-number']}</span>
               </Col>
             </Row>
-
-            <hr/>
-
-            <Row justify="space-between" type="flex" className="sidebar">
-                <Col>
-                  <span><b>Companynameeeeee</b></span>
-                </Col>
-                <Col>
-                  <span>{form['companyName']}</span>
-                </Col>
-              </Row>
+    
             </React.Fragment>
           ) : null}
+
+          {props.stage == 1 ? (
+            <React.Fragment>
+              <Row justify="space-between" type="flex" className="sidebar">
+                <Col>
+                  <span><b>Check-in date</b></span>
+                </Col>
+                <Col>
+                  <span>{form['checkin-picker']}</span>
+                </Col>
+              </Row>
+              <Row justify="space-between" type="flex" className="sidebar">
+                <Col>
+                  <span><b>Check-out date</b></span>
+                </Col>
+                <Col>
+                  <span>{form['checkout-picker']}</span>
+                </Col>
+              </Row>
+              <Row justify="space-between" type="flex" className="sidebar">
+              <Col>
+                <span><b>Guest Number</b></span>
+              </Col>
+              <Col>
+                <span>{form['guest-number']}</span>
+              </Col>
+            </Row>
+    
+            </React.Fragment>
+          ) : null}
+        
         </Col>
       </Row>
     </div>

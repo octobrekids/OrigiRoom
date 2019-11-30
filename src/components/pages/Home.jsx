@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { Row, Col, Carousel } from "antd";
+import { Row, Col, Carousel,Layout } from "antd";
 import RoomCard from "../Home/RoomCard";
 import RoomData from '../data/Room' 
+
+const { Footer } = Layout;
+
 
 export default class Home extends Component {
   render() {
@@ -61,7 +64,7 @@ export default class Home extends Component {
           </Row>
           </Col>
         </Row>
-
+        <Footer style={{ marginTop: "5%" }}><Row type="flex" justify="center">Copy Right by OrigiRoom</Row></Footer>
       
       </div>
     );

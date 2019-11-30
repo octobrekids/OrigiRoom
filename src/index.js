@@ -8,10 +8,10 @@ import { BrowserRouter } from "react-router-dom";
 import "./ReserveStyle.css";
 
 
-
 ReactDOM.render(
   <BrowserRouter>
     <App />
+   
   </BrowserRouter>,
   document.getElementById("root")
 );
