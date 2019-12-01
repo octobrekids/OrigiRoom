@@ -11,11 +11,11 @@ export default function Sidebar(props) {
           <h1 className="sidebar">BOOKING RECAP</h1>
           {props.stage >= 0 ? (
             <React.Fragment>
-            <Row>
-            <h3 className="sidebar">
-              <b>Room Details</b>
-            </h3>
-          </Row>
+              <Row>
+                <h3 className="sidebar">
+                  <b>Room Details</b>
+                </h3>
+              </Row>
               <Row justify="space-between" type="flex" className="sidebar">
                 <Col>
                   <span>
@@ -49,9 +49,9 @@ export default function Sidebar(props) {
             </React.Fragment>
           ) : null}
 
-          {props.stage == 1 ? (
+          {props.stage === 1 ? (
             <React.Fragment>
-              <hr style={{borderColor:'#ffffff'}}/>
+              <hr style={{ borderColor: "#ffffff" }} />
               <Row>
                 <h3 className="sidebar">
                   <b>Extra</b>
@@ -65,7 +65,7 @@ export default function Sidebar(props) {
                   </span>
                 </Col>
                 <Col>
-                  <span>{form["checkin-picker"]}</span>
+                  <span>{(form.capacity && form.capacity.label) || null}</span>
                 </Col>
               </Row>
               <Row justify="space-between" type="flex" className="sidebar">
@@ -75,7 +75,7 @@ export default function Sidebar(props) {
                   </span>
                 </Col>
                 <Col>
-                  <span>{form["checkout-picker"]}</span>
+                  <span>{(form.catering && form.catering.label) || null}</span>
                 </Col>
               </Row>
               <Row justify="space-between" type="flex" className="sidebar">
@@ -85,7 +85,14 @@ export default function Sidebar(props) {
                   </span>
                 </Col>
                 <Col>
-                  <span>{form["guest-number"]}</span>
+                  <span>
+                    {form.equipment.map(e => (
+                      <React.Fragment>
+                        <span>{e.label}</span>
+                        <span>{e.n}</span>
+                      </React.Fragment>
+                    ))}
+                  </span>
                 </Col>
               </Row>
             </React.Fragment>
