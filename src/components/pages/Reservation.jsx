@@ -21,6 +21,10 @@ function dataParsing(prevStateForm, data) {
   if (data.capacity) forms.capacity = data.capacity;
   if (data.equipment) forms.equipment = data.equipment;
   if (data.catering) forms.catering = data.catering;
+  if(data.firstName) forms.firstName = data.firstName 
+  if(data.lastName) forms.lastName = data.lastName
+  if(data.companyEmail) forms.companyEmail = data.companyEmail
+  if(data.Mobile) forms.Mobile= data.Mobile
 
   return {
     ...prevStateForm,

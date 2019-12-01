@@ -2,9 +2,9 @@ import React from "react";
 import { Tabs } from "antd";
 import ReservationForm from "../Reservation/ReservationForm";
 import ExtraForm from "../Reservation/ExtraForm";
-import ContactDetails from "../Reservation/ContactDetails"
-import Invoice from "../Reservation/Invoice"
-import Payment from "../Reservation/Payment"
+import ContactDetails from "../Reservation/ContactDetails";
+import Invoice from "../Reservation/Invoice";
+import Payment from "../Reservation/Payment";
 
 const { TabPane } = Tabs;
 
@@ -29,22 +29,21 @@ export default React.forwardRef((props, ref) => {
         />
       </TabPane>
       <TabPane key="1">
-        <ExtraForm 
-        room={props.room}
-        onType={props.onType}
+        <ExtraForm room={props.room} onType={props.onType} />
+      </TabPane>
+      <TabPane key="2">
+        <ContactDetails
           wrappedComponentRef={form => {
             ref.current = form;
           }}
-          />
-      </TabPane>
-      <TabPane key="2">
-      <ContactDetails />
+          onType={props.onType}
+        />
       </TabPane>
       <TabPane key="3">
-      <Invoice />
+        <Invoice />
       </TabPane>
       <TabPane key="4">
-      <Payment />
+        <Payment />
       </TabPane>
     </Tabs>
   );

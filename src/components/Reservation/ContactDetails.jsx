@@ -64,7 +64,7 @@ class ContactDetails extends Component {
           </Col>
           <Col span={12}>
             <Form.Item label="Mobile Phone" className="login-form" hasFeedback>
-              {getFieldDecorator("mobilePhone", {
+              {getFieldDecorator("Mobile", {
                 rules: [
                   {
                     required: true,
