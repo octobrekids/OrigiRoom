@@ -18,7 +18,10 @@ function dataParsing(prevStateForm, data) {
   if (data["checkout-picker"])
     forms["checkout-picker"] = data["checkout-picker"].format("YYYY-MM-DD");
   if (data["guest-number"]) forms["guest-number"] = data["guest-number"];
-  
+  if (data.capacity) forms.capacity = data.capacity;
+  if (data.equipment) forms.equipment = data.equipment;
+  if (data.catering) forms.catering = data.catering;
+
   return {
     ...prevStateForm,
     ...forms
