@@ -33,55 +33,73 @@ class ExtraForm extends Component {
   //});
 
   //handleStatus = () => {
-    // this.props.form.validateFields((err, values) => {
-    //   if (err) return this.props.onType({ status: false, values });
-    //   return this.props.onType({ status: true, values });
-    // });
+  // this.props.form.validateFields((err, values) => {
+  //   if (err) return this.props.onType({ status: false, values });
+  //   return this.props.onType({ status: true, values });
+  // });
   //};
+
+  handleSubmit = () =>
+    new Promise((resolve, reject) => {
+      resolve(this.state);
+    });
 
   onCapacity = value => {
     console.log(value);
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        capacity: value
-      };
-    });
+    let status = false;
+    if (this.state.capacity) status = true;
+    return this.setState(
+      prevState => {
+        return {
+          ...prevState,
+          capacity: value
+        };
+      },
+      () => this.props.onType({ status, values: this.state })
+    );
   };
 
   onCatering = value => {
+    const status = true;
     console.log(value);
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        catering: value
-      };
-    });
+    return this.setState(
+      prevState => {
+        return {
+          ...prevState,
+          catering: value
+        };
+      },
+      () => this.props.onType({ status, values: this.state })
+    );
   };
 
   onEquip = value => {
-    return this.setState(prevState => {
-      console.log("on equi[", prevState);
-      let equipment = prevState.equipment;
-      if (!equipment.some(e => e.label === value.label)) equipment.push(value);
-      else
-        equipment = equipment.map(e => {
-          if (e.label === value.label) return value;
-          else return e;
-        });
-      return {
-        equipment
-      };
-    });
+    return this.setState(
+      prevState => {
+        console.log("on equi[", prevState);
+        let equipment = prevState.equipment;
+        if (!equipment.some(e => e.label === value.label))
+          equipment.push(value);
+        else
+          equipment = equipment.map(e => {
+            if (e.label === value.label) return value;
+            else return e;
+          });
+        return {
+          equipment
+        };
+      },
+      () => this.props.onType({ status: true, values: this.state })
+    );
   };
 
   toggleEquip = value => {
-    console.log('toggle', value)
+    console.log("toggle", value);
     return this.setState(prevState => {
       console.log("on equi[", prevState);
       let equipment = prevState.equipment;
       const found = equipment.filter(e => e.label !== value.label);
-      console.log('toggle', found)
+      console.log("toggle", found);
       if (!found) equipment.push(value);
       else equipment = found;
       return {
