@@ -21,7 +21,7 @@ export default function AdminNavbar() {
             <Menu.Item key="1"><a href="/user/">Home</a></Menu.Item>
             <Menu.Item key="2"><a href="/user/search-room">Search Room</a></Menu.Item>
 
-            <Menu.Item key="3">Login</Menu.Item>
+            <Menu.Item key="3">Logout</Menu.Item>
          
           </Menu>
           

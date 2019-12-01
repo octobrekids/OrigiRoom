@@ -1,14 +1,9 @@
-import React from 'react'
-import AdminNavbar from './AdminNavbar'
-import UserNavbar from './UserNavbar'
+import React from "react";
+import AdminNavbar from "./AdminNavbar";
+import UserNavbar from "./UserNavbar";
+import User from "./data/User";
 
-export default function Navbar(props) {
-const permission = props.permission
-  return (
-    <div>
-      {
-        permission === 'admin' ? <AdminNavbar/> : <UserNavbar/>
-      }
-    </div>
-  )
+export default function Navbar() {
+  const alreadyLogin = User.getAuth();
+  return <div>{alreadyLogin ? <AdminNavbar /> : <UserNavbar />}</div>;
 }
