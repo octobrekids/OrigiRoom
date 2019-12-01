@@ -79,7 +79,7 @@ class Login extends Component {
              </Row>
              <Row type="flex" justify="center">
              <Col style={{marginTop:'20px'}}>
-            No Account? <a href="/register"><u>Register here ja!</u></a>
+            No Account? <a href="/register"><u>Register here</u></a>
              </Col>
              </Row>
                 
