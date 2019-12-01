@@ -177,7 +177,7 @@ class ExtraForm extends Component {
 
         <Row
           gutter={16}
-          style={{ paddingBottom: "20px", paddingRight: "10px" }}
+          style={{ paddingBottom: "20px", paddingRight: "10px"}}
         >
           {this.props.room.equipment.map(e => {
             let selected = false;

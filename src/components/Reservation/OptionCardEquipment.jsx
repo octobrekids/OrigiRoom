@@ -3,7 +3,7 @@ import { Row, Col, Card, InputNumber } from "antd";
 
 function selected(s) {
   return s
-    ? { marginTop: 16, background: "red" }
+    ? { marginTop: 16, boxShadow: "1px 1px 10px 1px #1890ff" }
     : { marginTop: 16, background: "" };
 }
 
