@@ -13,16 +13,12 @@ export default function UserRouter() {
   return (
     <Switch>
       <Route path={"/user/login"} component={Login} />
-
       <Route exact path={"/user"} component={Home} />
-      <Route path={"/user/searchRoom"} component={searchRoom} />
-      <Guard>
-        <Route path={"/*/register"} component={Register} />
-        <Route path={"/*/reserve"} component={Reservation} />
-        <Route path={"/*/reserve"} component={Reservation} />
-        <Route path={"/*/roomdetail"} component={roomDetail} />
-        <Route path={"/*/confirmRegister"} component={confirmRegister} />
-      </Guard>
+      <Route path={"/*/searchRoom"} component={searchRoom} />
+      <Route path={"/*/roomdetail"} component={roomDetail} />
+      <Route path={"/*/register"} component={Register} />
+      <Route path={"/*/confirmRegister"} component={confirmRegister} />
+      <Route path={"/*/reserve"} component={Reservation} />
     </Switch>
   );
 }
