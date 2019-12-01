@@ -74,7 +74,9 @@ class Login extends Component {
         <Row span={24} type="flex" justify="center" style={{ marginTop: "5%" }}>
           <Col span={20}>
             <Card title={<h1>Login</h1>} style={{ paddingTop: "10px" }}>
-              {!this.state.valid ? <span>พาสเวิร์ดผิด หน้าโง่</span> : null}
+              {!this.state.valid ? (
+                <span>Invalid Email or Password</span>
+              ) : null}
               <Form {...formItemLayout} onSubmit={this.onLogin}>
                 <Form.Item label="E-mail">
                   {getFieldDecorator("email", {
