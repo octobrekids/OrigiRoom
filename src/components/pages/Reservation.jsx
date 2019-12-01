@@ -18,6 +18,7 @@ function dataParsing(prevStateForm, data) {
   if (data["checkout-picker"])
     forms["checkout-picker"] = data["checkout-picker"].format("YYYY-MM-DD");
   if (data["guest-number"]) forms["guest-number"] = data["guest-number"];
+  
   return {
     ...prevStateForm,
     ...forms
@@ -180,7 +181,7 @@ class Reservation extends Component {
         return {
           ...prevState,
           next: true,
-          forms: dataParsing(prevState, values)
+          forms: dataParsing(prevState.forms, values)
         };
       });
     } else {
@@ -188,7 +189,7 @@ class Reservation extends Component {
         return {
           ...prevState,
           next: status,
-          forms: dataParsing(prevState, values)
+          forms: dataParsing(prevState.forms, values)
         };
       });
     }
