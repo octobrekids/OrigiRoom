@@ -1,23 +1,15 @@
-import React from 'react'
-import { Form,Row,Col,Button,Icon, Input } from 'antd'
-
-
+import React from "react";
+import { Form, Row, Col, Button, Icon, Input, Card } from "antd";
 
 export default function SearchRoom() {
-    // const { getFieldDecorator } = this.props.form;
-    return (
-      //   <div>
-      //   {/* <Form.Item label={Field1}> */}
-      //   {getFieldDecorator('field1', {
-      //     rules: [
-      //       {
-      //         required: true,
-      //         message: 'Input something!',
-      //       },
-      //     ],
-      //   })(<Input placeholder="placeholder" />)}
-      // </Form.Item>
-      //   </div>
-      null
-    )
+  // const { getFieldDecorator } = this.props.form;
+  return (
+    <div>
+      <Row type="flex" justify="center">
+        <Col span={20}>
+          <Card></Card>
+        </Col>
+      </Row>
+    </div>
+  );
 }

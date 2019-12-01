@@ -8,9 +8,9 @@ class Login extends Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        console.log("Received values of form: ", values);
       }
-    }); 
+    });
   };
 
   render() {
@@ -68,24 +68,23 @@ class Login extends Component {
                     ]
                   })(<Input.Password />)}
                 </Form.Item>
-             
- 
-             <Row type="flex" justify="center">
-             <Col>
-             <Button htmlType="submit" type="primary">Login</Button>
-            
-             </Col>
-             
-             </Row>
-             <Row type="flex" justify="center">
-             <Col style={{marginTop:'20px'}}>
-            No Account? <a href="/register"><u>Register here</u></a>
-             </Col>
-             </Row>
-                
-           
+
+                <Row type="flex" justify="center">
+                  <Col>
+                    <Button htmlType="submit" type="primary">
+                      Login
+                    </Button>
+                  </Col>
+                </Row>
+                <Row type="flex" justify="center">
+                  <Col style={{ marginTop: "20px" }}>
+                    No Account?{" "}
+                    <a href="/register">
+                      <u>Register here</u>
+                    </a>
+                  </Col>
+                </Row>
               </Form>
-              
             </Card>
           </Col>
         </Row>

@@ -228,7 +228,7 @@ class Reservation extends Component {
                     xs={7}
                     style={{
                       backgroundColor: "#1890ff",
-                      minHeight: "100vh"
+                      minHeight: window.innerHeight
                     }}
                   >
                     <Sidebar data={this.state.forms} stage={this.state.stage} />

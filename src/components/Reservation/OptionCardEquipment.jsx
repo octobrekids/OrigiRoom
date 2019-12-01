@@ -25,7 +25,7 @@ export default function OptionCard(props) {
               </span>
             </Row>
             <Row>
-              <span>{props.data.n}</span>
+              <span>{props.data.n} Baht</span>
             </Row>
             <Row>
             <InputNumber onChange={onDataChange} min={0} max={props.maximum}/>
