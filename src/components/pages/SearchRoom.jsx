@@ -4,7 +4,7 @@ import { Form,Row,Col,Button,Icon, Input } from 'antd'
 
 
 export default function SearchRoom() {
-    const { getFieldDecorator } = this.props.form;
+    // const { getFieldDecorator } = this.props.form;
     return (
       //   <div>
       //   {/* <Form.Item label={Field1}> */}

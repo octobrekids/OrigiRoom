@@ -131,7 +131,7 @@ class Register extends Component {
                 <Row type="flex" justify="center">
                   <Col>
                     <Button htmlType="submit" type="primary">
-                      Submit
+                      <a href="/user/confirmRegister">Submit</a> 
                     </Button>
                   </Col>
                 </Row>
