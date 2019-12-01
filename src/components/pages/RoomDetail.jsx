@@ -4,6 +4,7 @@ import { withRouter, Link } from "react-router-dom";
 import RoomData from "../data/Room";
 import queryString from "query-string";
 import { Join, join } from "path";
+import User from "../data/User";
 
 const { Footer } = Layout;
 function mapImage(src) {
@@ -15,6 +16,8 @@ function mapImageIcon(src) {
 }
 
 function RoomDetail(props) {
+  const alreadyLogin = User.getAuth();
+
   console.log(RoomData.rooms);
 
   const qs = props.history.location.search;
@@ -35,9 +38,13 @@ function RoomDetail(props) {
             <p className="roomdetail-header">{room.name}</p>
           </Row>
           <Row type="flex" justify="center">
-            <Link to={`/user/reserve?id=${id}`}>
+            <Link
+              to={
+                alreadyLogin ? `/user/reserve?id=${id}` : `/user/login?id=${id}`
+              }
+            >
               <Button type="primary" size="large" style={{ width: 200 }}>
-                Reserve Now
+                {alreadyLogin ? "Reserve Now" : "Login"}
               </Button>
             </Link>
           </Row>
