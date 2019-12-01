@@ -25,7 +25,6 @@ function dataParsing(prevStateForm, data) {
 }
 
 class Reservation extends Component {
-  state = { room: undefined };
   constructor(props) {
     super(props);
     this.formData = React.createRef();
@@ -69,7 +68,8 @@ class Reservation extends Component {
       CVV: ""
     },
     stage: 0,
-    next: false
+    next: false,
+    room: ""
   };
 
   onNext = async () => {
