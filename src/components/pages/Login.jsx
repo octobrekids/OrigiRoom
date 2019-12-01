@@ -1,15 +1,35 @@
 import React, { Component } from "react";
 import { Form, Input, Select, Card, Row, Col, Button } from "antd";
+import { withRouter } from "react-router-dom";
+import User from "../data/User";
 
 const { Option } = Select;
 
 class Login extends Component {
+  state = {
+    auth: "",
+    valid: true
+  };
+
+  componentDidMount() {
+    const alreadyAuth = User.getAuth();
+    if (alreadyAuth) return this.props.history.push("/user/");
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
       }
+    });
+  };
+
+  onLogin = () => {
+    return this.props.form.validateFields((err, values) => {
+      if (err) return;
+      const valid = User.login(values.email, values.password);
+      // if(!valid)
     });
   };
 
@@ -40,6 +60,7 @@ class Login extends Component {
         <Row span={24} type="flex" justify="center" style={{ marginTop: "5%" }}>
           <Col span={20}>
             <Card title={<h1>Login</h1>} style={{ paddingTop: "10px" }}>
+              {!this.state.valid ? <span>พาสเวิร์ดผิด หน้าโง่</span> : null}
               <Form {...formItemLayout} onSubmit={this.handleSubmit}>
                 <Form.Item label="E-mail">
                   {getFieldDecorator("email", {
@@ -93,4 +114,4 @@ class Login extends Component {
   }
 }
 const WrappedLoginForm = Form.create()(Login);
-export default WrappedLoginForm;
+export default withRouter(WrappedLoginForm);
