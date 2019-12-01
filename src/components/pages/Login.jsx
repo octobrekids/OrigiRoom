@@ -16,20 +16,30 @@ class Login extends Component {
     if (alreadyAuth) return this.props.history.push("/user/");
   }
 
-  handleSubmit = e => {
+  onLogin = e => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        console.log("Received values of form: ", values);
-      }
+    return this.props.form.validateFields((err, values) => {
+      if (err) return;
+      console.log("input", values);
+      const valid = User.login(values.email, values.password);
+      if (!valid)
+        return this.setState(prevState => {
+          return {
+            ...prevState,
+            valid: false
+          };
+        });
+
+      return this.props.history.push("/user/");
     });
   };
 
-  onLogin = () => {
-    return this.props.form.validateFields((err, values) => {
-      if (err) return;
-      const valid = User.login(values.email, values.password);
-      // if(!valid)
+  onChange = () => {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        valid: true
+      };
     });
   };
 
@@ -61,7 +71,7 @@ class Login extends Component {
           <Col span={20}>
             <Card title={<h1>Login</h1>} style={{ paddingTop: "10px" }}>
               {!this.state.valid ? <span>พาสเวิร์ดผิด หน้าโง่</span> : null}
-              <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+              <Form {...formItemLayout} onSubmit={this.onLogin}>
                 <Form.Item label="E-mail">
                   {getFieldDecorator("email", {
                     rules: [
@@ -74,7 +84,7 @@ class Login extends Component {
                         message: "Please input your Email"
                       }
                     ]
-                  })(<Input />)}
+                  })(<Input onChange={this.onChange} />)}
                 </Form.Item>
                 <Form.Item label="Password" hasFeedback>
                   {getFieldDecorator("password", {
@@ -87,7 +97,7 @@ class Login extends Component {
                         validator: this.validateToNextPassword
                       }
                     ]
-                  })(<Input.Password />)}
+                  })(<Input.Password onChange={this.onChange} />)}
                 </Form.Item>
 
                 <Row type="flex" justify="center">
