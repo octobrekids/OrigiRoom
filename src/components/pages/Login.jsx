@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Input, Select, Card, Row, Col, Button } from "antd";
 import { withRouter } from "react-router-dom";
 import User from "../data/User";
+import queryString from "querystring";
 
 const { Option } = Select;
 
@@ -30,6 +31,9 @@ class Login extends Component {
           };
         });
 
+      const qs = this.props.history.location.search;
+      const id = queryString.parse(qs)["?id"];
+      if (id) return this.props.history.push(`/user/reserve?id=${id}`);
       return this.props.history.push("/user/");
     });
   };
