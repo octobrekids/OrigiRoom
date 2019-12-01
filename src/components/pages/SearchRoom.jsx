@@ -55,32 +55,16 @@ class SearchRoom extends Component {
     return (
       <div>
         <Row type="flex" justify="center">
-          <Col span={20} style={{ marginTop: "10%" }}>
+          <Col span={20} style={{ marginTop: "5%" }}>
             <Card title={<h1>Search Room</h1>}>
               <Row gutter={16} type="flex" justify="center">
-                <Col span={10}>
-                  <Form.Item hasFeedback>
+                <Col span={18}>
+                  <Form.Item label="Search" hasFeedback>
                     {getFieldDecorator("roomName")(
                       <Input
                         onChange={this.onSearch}
-                        placeholder="Room Name e.g. A01 Flex"
+                        placeholder="Search by RoomName, Floor, Type and etc."
                       />
-                    )}
-                  </Form.Item>
-                </Col>
-                <Col span={6}>
-                  {" "}
-                  <Form.Item hasFeedback className="login-form">
-                    {getFieldDecorator("floor")(
-                      <Input placeholder="Floor e.g. 1,2" />
-                    )}
-                  </Form.Item>
-                </Col>
-                <Col span={6}>
-                  {" "}
-                  <Form.Item hasFeedback className="login-form">
-                    {getFieldDecorator("type")(
-                      <Input placeholder="Type e.g. Party, Seminar" />
                     )}
                   </Form.Item>
                 </Col>
@@ -88,11 +72,13 @@ class SearchRoom extends Component {
             </Card>
           </Col>
         </Row>
-        <Row type="flex" justify="start">
+        <Row type="flex" justify="center">
           <Col span={20}>
-            <Row type="flex" justify="space-between">
+            <Row type="flex" justify="center" gutter={16} >
               {this.state.search.map(e => (
+                <Col span={7} style={{marginTop:16}}>
                 <RoomCard data={e} />
+                </Col>
               ))}
             </Row>
           </Col>

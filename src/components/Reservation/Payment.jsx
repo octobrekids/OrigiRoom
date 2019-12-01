@@ -2,6 +2,21 @@ import React, { Component } from "react";
 import { Form, Row, Col, Input, Card } from "antd";
 
 class Payment extends Component {
+  handleSubmit = () =>
+  new Promise((resolve, reject) => {
+    this.props.form.validateFields((err, values) => {
+      if (err) return reject(err);
+      console.log("Received values of form: ", values);
+      resolve({ stage: 4, ...values });
+    });
+  });
+
+handleStatus = () => {
+  this.props.form.validateFields((err, values) => {
+    if (err) return this.props.onType({ status: false, values });
+    return this.props.onType({ status: true, values });
+  });
+};
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -31,7 +46,7 @@ class Payment extends Component {
                   className="cardholderName"
                   hasFeedback
                 >
-                  {getFieldDecorator("fullInvoice", {
+                  {getFieldDecorator("cardholderName", {
                 rules: [
                   {
                     required: true,
@@ -66,7 +81,7 @@ class Payment extends Component {
               </Col>
               <Col span={6}>
                 <Form.Item
-                  label="Expired Date"
+                  label="Expired Date (MM/YY)"
                   className="long-form"
                   hasFeedback
                 >

@@ -75,7 +75,9 @@ class Login extends Component {
           <Col span={20}>
             <Card title={<h1>Login</h1>} style={{ paddingTop: "10px" }}>
               {!this.state.valid ? (
-                <span>Invalid Email or Password</span>
+                <Row type="flex" justify="center" style={{marginBottom:2}}>
+                <span style={{color:'red'}}>Invalid Email or Password</span>
+                </Row>
               ) : null}
               <Form {...formItemLayout} onSubmit={this.onLogin}>
                 <Form.Item label="E-mail">
@@ -116,7 +118,7 @@ class Login extends Component {
                 <Row type="flex" justify="center">
                   <Col style={{ marginTop: "20px" }}>
                     No Account?{" "}
-                    <a href="/register">
+                    <a href="/user/register">
                       <u>Register here</u>
                     </a>
                   </Col>

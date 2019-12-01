@@ -12,7 +12,7 @@ export default function ConfirmRegister() {
         subTitle="Register success, Back to home."
         extra={[
           <Button type="primary" key="console">
-           <a href="/user/"> Back to Home</a>
+           <a href="/user/login"> Login</a>
           </Button>,
         ]}
       />

@@ -2,8 +2,8 @@ class User {
     constructor() {
         this.user = {}
         this.auth = [
-            { email: 'contact@korboon.com', password: '0' },
-            { email: 'yee@yee.com', password: '0' },
+            { email: 'user@origiroom.com', password: '1234' },
+            { email: 'mary@origieiei.com', password: 'mary1234' },
         ]
     }
 

@@ -63,7 +63,7 @@ class ReservationForm extends Component {
         </Row>
 
         <Form.Item label="Guest Number" className="login-form" hasFeedback>
-          {getFieldDecorator("guest-number", {
+          {getFieldDecorator("guestnumber", {
             rules: [
               {
                 required: true,

@@ -5,6 +5,7 @@ import ExtraForm from "../Reservation/ExtraForm";
 import ContactDetails from "../Reservation/ContactDetails";
 import Invoice from "../Reservation/Invoice";
 import Payment from "../Reservation/Payment";
+import Success from "../Reservation/Success";
 
 const { TabPane } = Tabs;
 
@@ -40,10 +41,26 @@ export default React.forwardRef((props, ref) => {
         />
       </TabPane>
       <TabPane key="3">
-        <Invoice />
+        <Invoice
+          wrappedComponentRef={form => {
+            ref.current = form;
+          }}
+          onType={props.onType}
+        />
       </TabPane>
       <TabPane key="4">
-        <Payment />
+        <Payment
+          wrappedComponentRef={form => {
+            ref.current = form;
+          }}
+          onType={props.onType}
+        />
+      </TabPane>
+      <TabPane key="5">
+        <Success
+         data = {props.data}
+         room = {props.room}
+        />
       </TabPane>
     </Tabs>
   );

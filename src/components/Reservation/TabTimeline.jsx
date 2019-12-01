@@ -12,6 +12,7 @@ export default function TabTimeline(props) {
       <Step title="Contact Details" />
       <Step title="Invoice Address" />
       <Step title="Payment" />
+      <Step title="Success" />
     </Steps>
   );
 }

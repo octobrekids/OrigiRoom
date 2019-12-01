@@ -11,27 +11,69 @@ import RoomData from "../data/Room";
 
 const { Footer, Content } = Layout;
 
+
+
 function dataParsing(prevStateForm, data) {
   let forms = {};
   if (data["checkin-picker"])
     forms["checkin-picker"] = data["checkin-picker"].format("YYYY-MM-DD");
   if (data["checkout-picker"])
     forms["checkout-picker"] = data["checkout-picker"].format("YYYY-MM-DD");
-  if (data["guest-number"]) forms["guest-number"] = data["guest-number"];
+  if (data["guestnumber"]) forms["guestnumber"] = data["guestnumber"];
   if (data.capacity) forms.capacity = data.capacity;
   if (data.equipment) forms.equipment = data.equipment;
   if (data.catering) forms.catering = data.catering;
-  if(data.firstName) forms.firstName = data.firstName 
-  if(data.lastName) forms.lastName = data.lastName
-  if(data.companyEmail) forms.companyEmail = data.companyEmail
-  if(data.Mobile) forms.Mobile= data.Mobile
+  if (data.firstName) forms.firstName = data.firstName;
+  if (data.lastName) forms.lastName = data.lastName;
+  if (data.companyEmail) forms.companyEmail = data.companyEmail;
+  if (data.Mobile) forms.Mobile = data.Mobile;
+
+  if (data.companyName) forms.companyName = data.companyName;
+  if (data.contactPerson) forms.contactPerson = data.contactPerson;
+  if (data.fullInvoice) forms.fullInvoice = data.fullInvoice;
+  if (data.vatNumber) forms.vatNumber = data.vatNumber;
+
+  if (data.Email) forms.Email = data.Email;
+  if (data.cardholderName) forms.cardholderName = data.cardholderName;
+  if (data.cardNumber) forms.cardNumber = data.cardNumber;
+  if (data.expiredDate) forms.expiredDate = data.expiredDate;
+  if (data.cvv) forms.cvv = data.cvv;
 
   return {
     ...prevStateForm,
     ...forms
   };
 }
-
+function totalPrice(forms, room) {
+  // const nOfGuest = Number(forms.guestnumber);
+  // console.log("total n guest", nOfGuest);
+  // if (!nOfGuest) return;
+  // // const keys = Object.keys(forms);
+  // const calc = ["catering", "equipment"];
+  // const total = calc.reduce((acc, e) => {
+  //   const data = forms[e];
+  //   console.log('total data', data)
+  //   if (Array.isArray(data)) {
+  //     const subPrice = data.reduce((accx, x) => accx + x.price * x.n, 0);
+  //     return subPrice;
+  //   } else {
+  //     const price = acc + (data && data.price * nOfGuest)
+  //     console.log('total catering', price)
+  //     return price;
+  //   }
+  // }, 0);
+  let total = 0;
+  total += (room.pricing && room.pricing.price) || null;
+  total +=
+    Number(forms.guestnumber) *
+    ((forms.catering && Number(forms.catering.price)) || null);
+  const equipment = forms.equipment
+    .map(p => Number(p.n) * Number(p.price))
+    .reduce((acc, e) => acc + Number(e), 0);
+  total += equipment;
+  console.log("total price", total);
+  return total;
+}
 class Reservation extends Component {
   constructor(props) {
     super(props);
@@ -54,9 +96,9 @@ class Reservation extends Component {
     welcome: "welcom text jaaaa",
     page: "0",
     forms: {
-      "check-in": null,
-      "check-out": null,
-      "guest-number": "",
+      // "check-in": null,
+      // "check-out": null,
+      guestnumber: "",
       capacity: "",
       catering: null,
       equipment: [],
@@ -68,18 +110,26 @@ class Reservation extends Component {
       contactPerson: "",
       fullInvoice: "",
       vatNumber: "",
-      specialNote: "",
+      // specialNote: "",
       Email: "",
       cardholderName: "",
       cardNumber: "",
       expiredDate: "",
-      CVV: ""
+      cvv: "",
+      price: 0
     },
     stage: 0,
     next: false,
     room: ""
   };
-
+  onTotal = e => {
+    console.log("total price", e);
+    return this.setState(prevState => {
+      return {
+        total: e
+      };
+    });
+  };
   onNext = async () => {
     // check validation before go next
     const stage = await this.getFormData();
@@ -94,6 +144,7 @@ class Reservation extends Component {
     //   })
     // }
     if (stage < 0) return;
+    if (stage === 5) return this.props.history.push("/user/");
 
     this.setState(prevState => {
       let n = Number(this.state.page);
@@ -188,7 +239,11 @@ class Reservation extends Component {
         return {
           ...prevState,
           next: true,
-          forms: dataParsing(prevState.forms, values)
+          // forms: dataParsing(prevState.forms, values),
+          forms: {
+            ...dataParsing(prevState.forms, values),
+            price: totalPrice(this.state.forms, this.state.room)
+          }
         };
       });
     } else {
@@ -224,18 +279,24 @@ class Reservation extends Component {
                           page={this.state.page}
                           ref={this.formData}
                           room={this.state.room}
+                          data={this.state.forms}
                         />
                       </Col>
                     </Row>
                   </Col>
+                   
+                  
                   <Col
                     xs={7}
-                    style={{
-                      backgroundColor: "#1890ff",
-                      minHeight: window.innerHeight
-                    }}
+                    style={{backgroundColor: "#1890ff",minHeight:'100vh'}}
                   >
-                    <Sidebar data={this.state.forms} stage={this.state.stage} />
+                
+                    <Sidebar
+                    
+                      data={this.state.forms}
+                      stage={this.state.stage}
+                      room={this.state.room}
+                    />
                   </Col>
                 </Row>
               </Content>
