@@ -100,14 +100,11 @@ export default function Success(props) {
             <Col>Processing Fee</Col>
             <Col>500 Baht</Col>
             </Row>
-            <Row type="flex" justify="space-between">
-            <Col>Tax (7.00%)</Col>
-            <Col>{(form.price * 0.07).toFixed(2)} Baht</Col>
-            </Row>
+           
             <hr />
             <Row type="flex" justify="space-between">
             <Col><b style={{color:'#1890ff'}}>Total</b></Col>
-            <Col> <b  style={{color:'#1890ff'}}>{form.price + 500 + form.price * 0.07} Baht</b></Col>
+            <Col> <b  style={{color:'#1890ff'}}>{form.price + 500} Baht</b></Col>
             </Row>
             <Row type="flex" justify="center"><Button type="primary"><a href="/user/">Home</a></Button></Row>
           </Card>

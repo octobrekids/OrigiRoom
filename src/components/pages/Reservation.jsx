@@ -71,6 +71,7 @@ function totalPrice(forms, room) {
     .map(p => Number(p.n) * Number(p.price))
     .reduce((acc, e) => acc + Number(e), 0);
   total += equipment;
+  total += 500;
   console.log("total price", total);
   return total;
 }
@@ -287,8 +288,8 @@ class Reservation extends Component {
                    
                   
                   <Col
-                    xs={7}
-                    style={{backgroundColor: "#1890ff",minHeight:'100vh'}}
+                    span={7}
+                    style={{backgroundColor:'#1890ff', minHeight:window.innerHeight}}
                   >
                 
                     <Sidebar

@@ -134,11 +134,17 @@ export default function Sidebar(props) {
 
               <hr style={{ borderColor: "#ffffff" }} />
 
+              <Row  type="flex" justify="space-between" className="sidebar">
+              <Col>Processing Fee</Col>
+              <Col>500 Baht</Col>
+              </Row>
+            
+
               <Row type="flex" justify="space-between" className="sidebar">
                 <Col>
                   <b>Price</b>
                 </Col>
-                <Col>{form.price}</Col>
+                <Col>{form.price + 500}</Col>
               </Row>
             </React.Fragment>
           ) : null}

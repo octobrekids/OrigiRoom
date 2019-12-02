@@ -21,7 +21,7 @@ handleStatus = () => {
     const { getFieldDecorator } = this.props.form;
     return (
       <Form style={{ marginLeft: "10%" }}>
-        <h1>4) Invoice Address</h1>
+        <h1>5) Payment</h1>
         <Row type="flex" justify="start">
           <Col span={12}>
             <Form.Item label="Email" className="login-form" hasFeedback>
